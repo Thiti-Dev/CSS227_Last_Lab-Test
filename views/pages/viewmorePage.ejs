@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test project</title>
+
+    <% include ../partials/head %>
+</head>
+<body>
+    <% include ../partials/nav %>
+
+    <div class="container">
+        <h1>Here is this blog</h1>
+        <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title"><%= post.title %></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= post.date %></h6>
+                  <p class="card-text"><%= post.body %></p>
+                  <form method="POST" action="edit">
+                    <button type="submit" class="btn btn-outline-danger">Edit</button>
+                    <input type="text" class="form-control" hidden placeholder="Title" name="id" value=<%= post.id %>>
+                    </form>
+                    <form method="POST" action="delete">
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        <input type="text" class="form-control" hidden placeholder="Title" name="id" value=<%= post.id %>>
+                    </form>
+                </div>
+              </div>
+    </div>
+</body>
+</html>

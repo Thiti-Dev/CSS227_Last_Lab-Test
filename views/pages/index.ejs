@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test project</title>
+    <% include ../partials/head %>
+        <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <% include ../partials/nav %>
+
+    <div class="container">
+        <div class="alert alert-info" role="alert">
+            This is the lists of blog , Feel free to check it out Or Creating it
+        </div>
+
+        <% posts.forEach(function(post) { %>
+            <div class="card mb-5" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= post.title %></h5>
+                      <h6 class="card-subtitle mb-2 text-muted"><%= post.date %></h6>
+                      <p class="card-text"><%= post.body %></p>
+                        <form method="POST" action="viewmore">
+                           <button type="submit" class="btn btn-outline-danger">View more</button>
+                           <input type="text" class="form-control" hidden placeholder="Title" name="id" value=<%= post.id %>>
+                             <!-- <button type="button" class="btn btn-outline-danger" id="viewpls" onclick="myfunction('<%= post.id %>')">View more</button> -->
+                        </form>
+                    </div>
+                  </div>
+        <% }); %>
+    </div>
+
+    <script>
+            /*console.log("Jquery inside")
+            $("#viewpls").click(function(){
+                //alert("The paragraph was clicked.");
+                $.post('viewmore', { title: "hello", field2 : "hello2"}, 
+                    function(returnedData){
+                        console.log("done post"); 
+                    });
+        });*/
+        function myfunction(idStr){
+            console.log(idStr)
+            axios.post('/viewmore', {
+  id: idStr
+})
+            /*$.post('viewmore', { id: idStr} , 
+                    function(returnedData){
+                        console.log("done")
+                        //window.location.href = "/post";
+                 });*/
+        }
+    </script>
+</body>
+</html>
